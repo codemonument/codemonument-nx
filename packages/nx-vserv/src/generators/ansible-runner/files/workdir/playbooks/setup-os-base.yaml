@@ -1,0 +1,7 @@
+# An ansible playbook which sets up a new host with one or more role definitions,
+# making the new server assume the roles defined here
+---
+- hosts: my-hosts
+  roles:
+    # os-base === a role to setup basic operating system things, like docker
+    - role: os-base

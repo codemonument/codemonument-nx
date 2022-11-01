@@ -1,0 +1,8 @@
+# An ansible playbook which sets up a new host with one or more role definitions,
+# making the new server assume the roles defined here
+---
+- hosts: my-hosts
+  roles:
+    # servcies-base === a role to setup things to run my docker-compose based vserv app git repositories,
+    # like traefik reverse proxy, execution user for these apps, etc.
+    - role: services-base
