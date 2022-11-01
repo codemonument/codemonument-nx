@@ -62,4 +62,16 @@ describe("nx-vserv e2e", () => {
       expect(project.tags).toEqual(["e2etag", "e2ePackage"]);
     }, 120000);
   });
+
+  describe("generate ansible-runner", () => {
+    it("should generate ansible-runner sucessfully", async () => {
+      const projectName = uniq("ansible-runner");
+      ensureNxProject("@codemonument-nx/nx-vserv", "dist/packages/nx-vserv");
+      await runNxCommandAsync(
+        `generate @codemonument-nx/nx-vserv:ansible-runner ${projectName} --tags e2etag,e2ePackage`,
+      );
+      const project = readJson(`apps/${projectName}/project.json`);
+      expect(project.tags).toEqual(["e2etag", "e2ePackage"]);
+    }, 120000);
+  });
 });
