@@ -4,6 +4,12 @@ A Nx Monorepo for codemonument stuff
 
 Contains currently one plugin called `nx-vserv` for creating self-hosted apps based on docker-compose.
 
+## Deploy a plugin (example: nx-vserv)
+
+1. Update version number in packages/nx-vserv/package.json
+2. (Build the plugin: `nx build nx-vserv` - implicitly done with nx deploy)
+3. Deploy the plugin `nx deploy nx-vserv`
+
 ## Repo Log
 
 ### 2022-11-01 Create generator `ansible-runner` in `nx-vserv`
