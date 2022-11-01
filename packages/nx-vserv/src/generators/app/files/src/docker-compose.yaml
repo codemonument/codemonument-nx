@@ -1,0 +1,45 @@
+version: '3.1'
+
+networks:
+  traefik:
+    external:
+      name: traefikv2
+
+services:
+  main-service:
+    # Your app serivce to host
+    image: # your docker image
+    # SERVICE_DOMAIN - an env var with the domain where this should later run,
+    # for example: myapp.example.com
+    hostname: ${SERVICE_DOMAIN}
+    restart:
+      always
+      # Ports MUST NOT be forwarded in production,
+      # because nginx reverse proxy can connect to them on port 80 on the internal network
+      # and port 80 is already occupied by the reverse proxy
+      # ports:
+      # - Host:Container
+      # - "80:80"
+    volumes:
+      # APP_DATA_ROOT = The path on the host machine where this app container saves its data
+      # can be used for backups from that location etc.
+      - ${APP_DATA_ROOT}:/data/
+    networks:
+      - traefik
+    environment:
+      # Define all environment variables your container expects!
+      # Format:
+      # VARIABLE_NAME: 'any value as string (even booleans!)'
+    labels:
+      # Traefik V2 Config
+      - 'traefik.enable=true'
+      - 'traefik.docker.network=traefikv2'
+      - 'traefik.http.services.<%= projectName %>.loadbalancer.server.port=80'
+      - 'traefik.http.routers.<%= projectName %>.rule=Host(`${SERVICE_DOMAIN}`)'
+      - 'traefik.http.routers.<%= projectName %>.service=<%= projectName %>@docker'
+      - 'traefik.http.routers.<%= projectName %>.entrypoints=https'
+
+      # App SSL Settings (may be different for you, when you have a different cert resolver!)
+      - 'traefik.http.routers.<%= projectName %>.tls=true'
+      - 'traefik.http.routers.<%= projectName %>.tls.certresolver=domainoffensive'
+      - 'traefik.http.routers.<%= projectName %>.tls.domains[0].main=${SERVICE_DOMAIN}'
