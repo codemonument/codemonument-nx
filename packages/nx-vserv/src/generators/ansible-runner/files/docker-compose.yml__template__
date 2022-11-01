@@ -31,4 +31,4 @@ services:
       # maps all nx/apps from this nx monorepo into /nx/apps on the ansible-controller
       # Example path to ansible playbook:
       # /nx/apps/nextcloud/ansible/init-or-update.yaml
-      - <%= nxAppsDir %>:/nx/apps
+      - <%= offsetFromRoot %><%= nxAppsDir %>:/nx/apps
