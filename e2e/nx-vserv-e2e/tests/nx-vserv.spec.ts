@@ -28,21 +28,27 @@ describe("nx-vserv e2e", () => {
     await runNxCommandAsync(
       `generate @codemonument-nx/nx-vserv:app ${project}`,
     );
-    const result = await runNxCommandAsync(`build ${project}`);
-    expect(result.stdout).toContain("Executor ran");
+    expect(() => checkFilesExist(`apps/${project}/docker-compose.yaml`)).not
+      .toThrow();
+    // const result = await runNxCommandAsync(`build ${project}`);
+    // expect(result.stdout).toContain("Executor ran");
   }, 120000);
 
   describe("--directory", () => {
-    it("should create src in the specified directory", async () => {
-      const project = uniq("nx-vserv");
-      await runNxCommandAsync(
-        `generate @codemonument-nx/nx-vserv:app ${project} --directory subdir`,
-      );
-      expect(() =>
-        checkFilesExist(`apps/subdir/${project}/src/docker-compose.yaml`)
-      ).not
-        .toThrow();
-    }, 120000);
+    it(
+      "should create files in the specified directory",
+      async () => {
+        const project = uniq("nx-vserv");
+        await runNxCommandAsync(
+          `generate @codemonument-nx/nx-vserv:app ${project} --directory subdir`,
+        );
+        expect(() =>
+          checkFilesExist(`apps/subdir/${project}/docker-compose.yaml`)
+        ).not
+          .toThrow();
+      },
+      120000,
+    );
   });
 
   describe("--tags", () => {

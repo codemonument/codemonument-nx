@@ -58,9 +58,88 @@ export default async function (
     root: normalizedOptions.projectRoot,
     projectType: "application",
     sourceRoot: `${normalizedOptions.projectRoot}/src`,
+    // CAUTION: These scripts need some executables in global path!
+    // - doppler (from doppler-cli)
     targets: {
       build: {
         executor: "@codemonument-nx/nx-vserv:build",
+      },
+      start: {
+        executor: "@nrwl/workspace:run-commands",
+        "options": {
+          "command":
+            "doppler run -- docker-compose up --build --remove-orphans -d ",
+        },
+      },
+      stop: {
+        executor: "@nrwl/workspace:run-commands",
+        "options": {
+          "command": "doppler run -- docker-compose down",
+        },
+      },
+      logs: {
+        executor: "@nrwl/workspace:run-commands",
+        "options": {
+          "command": "doppler run -- docker-compose logs -f",
+        },
+      },
+      shell: {
+        executor: "@nrwl/workspace:run-commands",
+        "options": {
+          "command":
+            `doppler run -- docker-compose exec ${normalizedOptions.projectName} bash`,
+        },
+      },
+      startDebug: {
+        executor: "@nrwl/workspace:run-commands",
+        "options": {
+          "commands": [
+            `nx start ${normalizedOptions.projectName}`,
+            `nx logs ${normalizedOptions.projectName}`,
+          ],
+        },
+      },
+      update: {
+        executor: "@nrwl/workspace:run-commands",
+        "options": {
+          "commands": [
+            `nx stop ${normalizedOptions.projectName}`,
+            `git pull`,
+            `nx start ${normalizedOptions.projectName}`,
+          ],
+        },
+      },
+      updateDebug: {
+        executor: "@nrwl/workspace:run-commands",
+        "options": {
+          "commands": [
+            `nx stop ${normalizedOptions.projectName}`,
+            `git pull`,
+            `nx startDebug ${normalizedOptions.projectName}`,
+          ],
+        },
+      },
+      upgrade: {
+        executor: "@nrwl/workspace:run-commands",
+        "options": {
+          "commands": [
+            `nx stop ${normalizedOptions.projectName}`,
+            `git pull`,
+            `doppler run -- docker-compose pull`,
+            `nx start ${normalizedOptions.projectName}`,
+          ],
+        },
+      },
+      upgradeDebug: {
+        executor: "@nrwl/workspace:run-commands",
+        "options": {
+          "commands": [
+            `nx stop ${normalizedOptions.projectName}`,
+            `git pull`,
+            `doppler run -- docker-compose pull`,
+            `nx startDebug ${normalizedOptions.projectName}`,
+          ],
+        },
       },
     },
     tags: normalizedOptions.parsedTags,

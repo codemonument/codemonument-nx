@@ -6,7 +6,7 @@ networks:
       name: traefikv2
 
 services:
-  main-service:
+  <%= projectName %>:
     # Your app serivce to host
     image: # your docker image
     # SERVICE_DOMAIN - an env var with the domain where this should later run,
