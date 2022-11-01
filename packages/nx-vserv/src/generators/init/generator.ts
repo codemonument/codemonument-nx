@@ -8,9 +8,9 @@ import {
   Tree,
 } from "@nrwl/devkit";
 import * as path from "path";
-import { NxVservGeneratorSchema } from "./schema";
+import { NxVservInitGeneratorSchema } from "./schema";
 
-interface NormalizedSchema extends NxVservGeneratorSchema {
+interface NormalizedSchema extends NxVservInitGeneratorSchema {
   projectName: string;
   projectRoot: string;
   projectDirectory: string;
@@ -19,7 +19,7 @@ interface NormalizedSchema extends NxVservGeneratorSchema {
 
 function normalizeOptions(
   tree: Tree,
-  options: NxVservGeneratorSchema,
+  options: NxVservInitGeneratorSchema,
 ): NormalizedSchema {
   const name = names(options.name).fileName;
   const projectDirectory = options.directory
@@ -55,7 +55,10 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
   );
 }
 
-export default async function (tree: Tree, options: NxVservGeneratorSchema) {
+export default async function (
+  tree: Tree,
+  options: NxVservInitGeneratorSchema,
+) {
   const normalizedOptions = normalizeOptions(tree, options);
   addProjectConfiguration(tree, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
