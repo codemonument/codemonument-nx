@@ -1,6 +1,7 @@
 import {
   checkFilesExist,
   ensureNxProject,
+  readFile,
   readJson,
   runNxCommandAsync,
   uniq,
@@ -52,6 +53,21 @@ describe("nx-npm-app e2e", () => {
       );
       const project = readJson(`apps/${projectName}/project.json`);
       expect(project.tags).toEqual(["e2etag", "e2ePackage"]);
+    }, 120000);
+  });
+
+  describe("Should generate correct template files", () => {
+    const projectName = uniq("nx-npm-app");
+
+    beforeAll(async () => {
+      await runNxCommandAsync(
+        `generate @codemonument/nx-npm-app:nx-npm-app ${projectName} --tags e2etag,e2ePackage`,
+      );
+    });
+
+    it(".gitignore", async () => {
+      const gitignore = readFile(`apps/${projectName}/.gitignore`);
+      expect(gitignore).toContain("node_modules");
     }, 120000);
   });
 });
