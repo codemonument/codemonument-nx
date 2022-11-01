@@ -1,0 +1,34 @@
+version: '3.8'
+
+# NOTE: Variables are filled in from .env file
+
+# run commands inside the ansible container with:
+# docker-compose run ansible bash
+#
+# if you want to run an ansible command, replace bash with ansible
+# (yes, two times ansible in a row, because the first parameter defines the service
+#  which should be called as defined in docker-compose
+#  and the second one defines the executable inside the service
+# )
+#
+# example command:
+# docker-compose run ansible ansible all -m ping -u you
+
+services:
+  ansible:
+    image: vservtech/ansible-controller-docker:latest
+    volumes:
+      # maps all things inside `workdir`, like inventory, etc.
+      - ${LOCAL_WORKDIR}/:/opt/ansible-workdir
+
+      # map special ansible config dirs and files
+      - ${LOCAL_ASSETS}/ansible.cfg:/etc/ansible/ansible.cfg
+      - ${LOCAL_ASSETS}/vault_config/:/etc/ansible/vault_config
+
+      # map complete assets/.ssh folder
+      - ${LOCAL_ASSETS}/.ssh/:/root/.ssh
+
+      # maps all nx/apps from this nx monorepo into /nx/apps on the ansible-controller
+      # Example path to ansible playbook:
+      # /nx/apps/nextcloud/ansible/init-or-update.yaml
+      - <%= nxAppsDir %>:/nx/apps

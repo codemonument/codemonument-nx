@@ -13,6 +13,7 @@ import { AnsibleRunnerGeneratorSchema } from "./schema";
 interface NormalizedSchema extends AnsibleRunnerGeneratorSchema {
   projectName: string;
   projectRoot: string;
+  nxAppsDir: string;
   projectDirectory: string;
   parsedTags: string[];
 }
@@ -26,7 +27,8 @@ function normalizeOptions(
     ? `${names(options.directory).fileName}/${name}`
     : name;
   const projectName = projectDirectory.replace(new RegExp("/", "g"), "-");
-  const projectRoot = `${getWorkspaceLayout(tree).appsDir}/${projectDirectory}`;
+  const nxAppsDir = getWorkspaceLayout(tree).appsDir;
+  const projectRoot = `${nxAppsDir}/${projectDirectory}`;
   const parsedTags = options.tags
     ? options.tags.split(",").map((s) => s.trim())
     : [];
@@ -35,6 +37,7 @@ function normalizeOptions(
     ...options,
     projectName,
     projectRoot,
+    nxAppsDir,
     projectDirectory,
     parsedTags,
   };
