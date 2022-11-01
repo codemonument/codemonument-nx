@@ -1,0 +1,7 @@
+---
+ansible_python_interpreter: /usr/bin/python3
+ansible_user: root
+ROOT_HOME: '{{ lookup("env", "HOME") }}'
+
+# Try to define home like this to have it be interpolated in the correct user contexts, e.g. when the variable is used!
+HOME: '~/'

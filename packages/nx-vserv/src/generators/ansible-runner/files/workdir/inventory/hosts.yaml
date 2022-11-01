@@ -1,0 +1,14 @@
+# Ansible Hosts file (a.k.a Inventory Definition) documentation
+# https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#inventory-basics-formats-hosts-and-groups
+
+# Example Hosts Group
+my-hosts:
+  # List of hosts for that group (children keys: urls of the hosts)
+  hosts:
+    # Host alias: myhost1
+    myhost1:
+      # The url for myhost1
+      ansible_host: myhost1.example.com
+
+    myhost2:
+      ansible_host: myhost2.example.com
