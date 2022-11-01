@@ -7,6 +7,11 @@
       "factory": "./src/generators/app/generator",
       "schema": "./src/generators/app/schema.json",
       "description": "nx-vserv app generator"
+    },
+    "ansible-runner": {
+      "factory": "./src/generators/ansible-runner/generator",
+      "schema": "./src/generators/ansible-runner/schema.json",
+      "description": "Generates an ansible runner app for running your vserv apps"
     }
   }
 }
