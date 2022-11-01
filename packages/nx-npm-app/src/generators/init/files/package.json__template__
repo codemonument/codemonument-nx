@@ -1,0 +1,16 @@
+{
+	"name": "<%= projectName %>",
+	"version": "2.0.0",
+	"description": "<%= projectDescription %>",
+	"private": "true",
+	"config": {
+		"exampleKey": "exampleValue"
+	},
+	"scripts": {
+		"start": "echo \"No start script defined yet! \"",
+		"stop": "echo \"No stop script defined yet! \"",
+    "config-example": "echo ${npm_package_config_example_key}"
+
+	},
+	"license": "UNLICENSED",
+}
