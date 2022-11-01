@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "nx-vserv",
+  "version": "0.0.1",
+  "generators": {
+    "nx-vserv": {
+      "factory": "./src/generators/nx-vserv/generator",
+      "schema": "./src/generators/nx-vserv/schema.json",
+      "description": "nx-vserv generator"
+    }
+  }
+}

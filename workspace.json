@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "projects": {
+    "nx-vserv": "packages/nx-vserv",
+    "nx-vserv-e2e": "e2e/nx-vserv-e2e"
+  }
+}
