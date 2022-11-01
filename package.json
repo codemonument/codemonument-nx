@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "deploy-vserv": "npm publish ./dist/packages/nx-vserv"
+    "deploy-vserv": "npm publish --access public ./dist/packages/nx-vserv"
   },
   "private": true,
   "devDependencies": {
