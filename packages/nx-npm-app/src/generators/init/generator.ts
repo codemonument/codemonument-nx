@@ -8,9 +8,9 @@ import {
   Tree,
 } from "@nrwl/devkit";
 import * as path from "path";
-import { NxNpmAppGeneratorSchema } from "./schema";
+import { NxNpmAppInitGeneratorSchema } from "./schema";
 
-interface NormalizedSchema extends NxNpmAppGeneratorSchema {
+interface NormalizedSchema extends NxNpmAppInitGeneratorSchema {
   projectName: string;
   projectRoot: string;
   projectDirectory: string;
@@ -19,7 +19,7 @@ interface NormalizedSchema extends NxNpmAppGeneratorSchema {
 
 function normalizeOptions(
   tree: Tree,
-  options: NxNpmAppGeneratorSchema,
+  options: NxNpmAppInitGeneratorSchema,
 ): NormalizedSchema {
   const name = names(options.name).fileName;
   const projectDirectory = options.directory
