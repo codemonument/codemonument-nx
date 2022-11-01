@@ -55,7 +55,10 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
   );
 }
 
-export default async function (tree: Tree, options: NxNpmAppGeneratorSchema) {
+export default async function (
+  tree: Tree,
+  options: NxNpmAppInitGeneratorSchema,
+) {
   const normalizedOptions = normalizeOptions(tree, options);
   addProjectConfiguration(tree, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
