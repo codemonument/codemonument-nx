@@ -56,7 +56,7 @@ export default async function (
   const normalizedOptions = normalizeOptions(tree, options);
   addProjectConfiguration(tree, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
-    projectType: "library",
+    projectType: "application",
     sourceRoot: `${normalizedOptions.projectRoot}/src`,
     targets: {
       build: {
