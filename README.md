@@ -7,8 +7,8 @@ Contains currently one plugin called `nx-vserv` for creating self-hosted apps ba
 ## Deploy a plugin (example: nx-vserv)
 
 1. Update version number in packages/nx-vserv/package.json
-2. (Build the plugin: `nx build nx-vserv` - implicitly done with nx deploy)
-3. Deploy the plugin `nx deploy nx-vserv`
+2. Build the plugin: `nx build nx-vserv`
+3. Deploy the plugin `npm run deploy-vserv`
 
 ## Repo Log
 

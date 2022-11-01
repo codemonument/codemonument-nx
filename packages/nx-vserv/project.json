@@ -47,13 +47,6 @@
         "jestConfig": "packages/nx-vserv/jest.config.ts",
         "passWithNoTests": true
       }
-    },
-    "deploy": {
-      "executor": "@nrwl/workspace:run-commands",
-      "options": {
-        "command": "npm publish ./dist/package/nx-vserv"
-      },
-      "dependsOn": ["^build"]
     }
   },
   "tags": []
