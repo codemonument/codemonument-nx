@@ -6,9 +6,9 @@ import {
   names,
   offsetFromRoot,
   Tree,
-} from '@nrwl/devkit';
-import * as path from 'path';
-import { NxVservGeneratorSchema } from './schema';
+} from "@nrwl/devkit";
+import * as path from "path";
+import { NxVservGeneratorSchema } from "./schema";
 
 interface NormalizedSchema extends NxVservGeneratorSchema {
   projectName: string;
@@ -19,16 +19,16 @@ interface NormalizedSchema extends NxVservGeneratorSchema {
 
 function normalizeOptions(
   tree: Tree,
-  options: NxVservGeneratorSchema
+  options: NxVservGeneratorSchema,
 ): NormalizedSchema {
   const name = names(options.name).fileName;
   const projectDirectory = options.directory
     ? `${names(options.directory).fileName}/${name}`
     : name;
-  const projectName = projectDirectory.replace(new RegExp('/', 'g'), '-');
-  const projectRoot = `${getWorkspaceLayout(tree).libsDir}/${projectDirectory}`;
+  const projectName = projectDirectory.replace(new RegExp("/", "g"), "-");
+  const projectRoot = `${getWorkspaceLayout(tree).appsDir}/${projectDirectory}`;
   const parsedTags = options.tags
-    ? options.tags.split(',').map((s) => s.trim())
+    ? options.tags.split(",").map((s) => s.trim())
     : [];
 
   return {
@@ -45,13 +45,13 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
     ...options,
     ...names(options.name),
     offsetFromRoot: offsetFromRoot(options.projectRoot),
-    template: '',
+    template: "",
   };
   generateFiles(
     tree,
-    path.join(__dirname, 'files'),
+    path.join(__dirname, "files"),
     options.projectRoot,
-    templateOptions
+    templateOptions,
   );
 }
 
@@ -59,11 +59,11 @@ export default async function (tree: Tree, options: NxVservGeneratorSchema) {
   const normalizedOptions = normalizeOptions(tree, options);
   addProjectConfiguration(tree, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
-    projectType: 'library',
+    projectType: "library",
     sourceRoot: `${normalizedOptions.projectRoot}/src`,
     targets: {
       build: {
-        executor: '@codemonument-nx/nx-vserv:build',
+        executor: "@codemonument-nx/nx-vserv:build",
       },
     },
     tags: normalizedOptions.parsedTags,
