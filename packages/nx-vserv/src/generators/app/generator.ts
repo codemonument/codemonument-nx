@@ -9,13 +9,7 @@ import {
 } from "@nrwl/devkit";
 import * as path from "path";
 import { NxVservAppGeneratorSchema } from "./schema";
-
-interface NormalizedSchema extends NxVservAppGeneratorSchema {
-  projectName: string;
-  projectRoot: string;
-  projectDirectory: string;
-  parsedTags: string[];
-}
+import { NormalizedSchema } from "./normalized-schema";
 
 function normalizeOptions(
   tree: Tree,
@@ -43,7 +37,7 @@ function normalizeOptions(
 function addFiles(tree: Tree, options: NormalizedSchema) {
   const templateOptions = {
     ...options,
-    ...names(options.name),
+    ...names(options.projectName),
     offsetFromRoot: offsetFromRoot(options.projectRoot),
     template: "",
   };
