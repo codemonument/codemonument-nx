@@ -4,9 +4,9 @@
   "version": "0.0.1",
   "generators": {
     "nx-npm-app": {
-      "factory": "./src/generators/nx-npm-app/generator",
-      "schema": "./src/generators/nx-npm-app/schema.json",
-      "description": "nx-npm-app generator"
+      "factory": "./src/generators/init/generator",
+      "schema": "./src/generators/init/schema.json",
+      "description": "nx-npm-app init generator"
     }
   }
 }
