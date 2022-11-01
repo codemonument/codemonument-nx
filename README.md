@@ -6,6 +6,10 @@ Contains currently one plugin called `nx-vserv` for creating self-hosted apps ba
 
 ## Repo Log
 
+### 2022-10-01 Create plugin `nx-npm-app`
+
+1. `npx nx g @nrwl/nx-plugin:plugin --name nx-npm-app --importPath @codemonument/nx-npm-app`
+
 ### 2022-10-01 Create executor `ansible`
 
 1. `npx nx generate @nrwl/nx-plugin:executor ansible --project=nx-vserv --description='Runs an ansible command or playbook' --no-interactive`

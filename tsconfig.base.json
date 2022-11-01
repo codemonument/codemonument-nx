@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@codemonument-nx/nx-vserv": ["packages/nx-vserv/src/index.ts"]
+      "@codemonument-nx/nx-vserv": ["packages/nx-vserv/src/index.ts"],
+      "@codemonument/nx-npm-app": ["packages/nx-npm-app/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
