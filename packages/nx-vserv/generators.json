@@ -3,10 +3,10 @@
   "name": "nx-vserv",
   "version": "0.0.1",
   "generators": {
-    "nx-vserv": {
-      "factory": "./src/generators/nx-vserv/generator",
-      "schema": "./src/generators/nx-vserv/schema.json",
-      "description": "nx-vserv generator"
+    "app": {
+      "factory": "./src/generators/app/generator",
+      "schema": "./src/generators/app/schema.json",
+      "description": "nx-vserv app generator"
     }
   }
 }
