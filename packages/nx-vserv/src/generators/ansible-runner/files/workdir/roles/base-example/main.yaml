@@ -1,0 +1,4 @@
+---
+# Sets up python and pip to prepare target server for ansible executions
+# Also shows how to import sibling task files from the same folder
+- import_tasks: setup-ansible-target.yaml

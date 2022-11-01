@@ -3,5 +3,4 @@
 ---
 - hosts: my-hosts
   roles:
-    # os-base === a role to setup basic operating system things, like docker
-    - role: os-base
+    - role: base-example
